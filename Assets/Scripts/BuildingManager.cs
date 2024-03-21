@@ -1,20 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    [SerializeField] Transform woodHarvester;
+    private BuildingTypeSO buildingType;
+    private BuildingTypeListSO buildingTypeList;
     private Camera mainCamera;
 
     private void Start(){
-        mainCamera = Camera.main;    
+        mainCamera = Camera.main;  
+
+        buildingTypeList = Resources.Load<BuildingTypeListSO>(typeof(BuildingTypeListSO).Name);  
+        //carrega de dentro da pasta nomeada como "Resources" um item da classe "BuildingTypeListSO" que tem o nome de "BuildingTypeListSO"
+        Debug.Log(buildingType);
+        buildingType = buildingTypeList.list[0];
     }
 
     private void Update(){
         if(Input.GetMouseButtonDown(0)){
-            Instantiate(woodHarvester, GetMouseWorldPosition(), quaternion.identity);
+            Instantiate(buildingType.prefab, GetMouseWorldPosition(), quaternion.identity);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            buildingType = buildingTypeList.list[0];
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            buildingType = buildingTypeList.list[1];
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            buildingType = buildingTypeList.list[2];
         }
     }
 
