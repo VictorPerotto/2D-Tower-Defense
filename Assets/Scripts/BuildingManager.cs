@@ -10,13 +10,14 @@ public class BuildingManager : MonoBehaviour
     private BuildingTypeListSO buildingTypeList;
     private Camera mainCamera;
 
-    private void Start(){
-        mainCamera = Camera.main;  
-
+    private void Awake(){
         buildingTypeList = Resources.Load<BuildingTypeListSO>(typeof(BuildingTypeListSO).Name);  
         //carrega de dentro da pasta nomeada como "Resources" um item da classe "BuildingTypeListSO" que tem o nome de "BuildingTypeListSO"
-        Debug.Log(buildingType);
         buildingType = buildingTypeList.list[0];
+    }
+
+    private void Start(){
+        mainCamera = Camera.main;  
     }
 
     private void Update(){
