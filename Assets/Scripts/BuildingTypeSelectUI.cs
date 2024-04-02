@@ -4,8 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingTypeSelectUI : MonoBehaviour
-{   
+public class BuildingTypeSelectUI : MonoBehaviour{
+       
     [SerializeField] private Sprite arrowSprite;
     private Dictionary<BuildingTypeSO, Transform> buttonTransformDictionary;
 
@@ -27,7 +27,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
         arrowButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0f);
 
         arrowButton.Find("image").GetComponent<Image>().sprite = arrowSprite;
-        arrowButton.Find("image").GetComponent<RectTransform>().sizeDelta = new Vector2 (0, -30);
+        arrowButton.Find("image").GetComponent<RectTransform>().sizeDelta = new Vector2 (60, 60);
 
         //() => {} cria uma shorthand para a criação de uma função, como se fosse uma função sem parametros
         arrowButton.GetComponent<Button>().onClick.AddListener(() => {
@@ -57,7 +57,11 @@ public class BuildingTypeSelectUI : MonoBehaviour
         }   
     }
 
-    private void Update(){
+    private void Start(){
+        BuildingManager.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;
+    }
+
+    private void BuildingManager_OnActiveBuildingTypeChanged(object sender, BuildingManager.OnActiveBuildingTypeChangedEventArgs e){
         UpdateActiveBuildingTypeButton();
     }
 
