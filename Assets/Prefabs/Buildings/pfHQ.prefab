@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1322533633075302638}
-  - component: {fileID: 7583690117785095006}
-  - component: {fileID: -3130056156129046747}
-  - component: {fileID: 4469424569315270152}
+  - component: {fileID: -459274434580780653}
+  - component: {fileID: 2520029738490987510}
+  - component: {fileID: 890005057182580032}
   m_Layer: 0
-  m_Name: pfGoldHarvester
+  m_Name: pfHQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7583690117785095006
+--- !u!114 &-459274434580780653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184c243b47fcdfb418b53bfc1ab3a200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3130056156129046747
+--- !u!114 &2520029738490987510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00715bb2f631a342b4913cceb4ac9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingType: {fileID: 11400000, guid: 66b632d47b85b054bb37152473aa6d04, type: 2}
---- !u!61 &4469424569315270152
+  buildingType: {fileID: 11400000, guid: 43be396e2389df6468d831e2d748b6f3, type: 2}
+--- !u!61 &890005057182580032
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09398508, y: -0.12922978}
+  m_Offset: {x: 0.047335625, y: -0.46234226}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -84,7 +84,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.9812164, y: 4.406964}
+  m_Size: {x: 6.3042345, y: 4.1041346}
   m_EdgeRadius: 0
 --- !u!1 &2059396691185255633
 GameObject:
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ead931dd91bff8489e75de9c414f17f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7030b8e3eb49e8440ae8eb3ec8b45d05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

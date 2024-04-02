@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BuildingTypeSelectUI : MonoBehaviour{
-       
+
     [SerializeField] private Sprite arrowSprite;
     private Dictionary<BuildingTypeSO, Transform> buttonTransformDictionary;
 
     [SerializeField] Transform buttonTemplate;
     private Transform arrowButton;
+    [SerializeField] private List<BuildingTypeSO> ignoreBuildingTypeList;
 
     private void Awake(){
+
         buttonTemplate.gameObject.SetActive(false);
 
         BuildingTypeListSO buildingTypeList = Resources.Load<BuildingTypeListSO>(typeof(BuildingTypeListSO).Name);  
@@ -37,7 +39,8 @@ public class BuildingTypeSelectUI : MonoBehaviour{
         index ++;
 
         foreach(BuildingTypeSO buildingType in buildingTypeList.list){
-
+            
+            if(ignoreBuildingTypeList.Contains(buildingType)) continue;
             Transform buttonTransform = Instantiate(buttonTemplate, transform);
             buttonTransform.gameObject.SetActive(true);
 
