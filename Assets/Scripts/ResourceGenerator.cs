@@ -5,6 +5,7 @@ using UnityEngine;
 public class ResourceGenerator : MonoBehaviour{
     
     private ResourceGeneratorData resourceGeneratorData;
+    private bool hasResources = true;
     private float timer;
     private float timerMax;
 
@@ -31,6 +32,7 @@ public class ResourceGenerator : MonoBehaviour{
         nearbyResourceAmount = Mathf.Clamp(nearbyResourceAmount, 0, resourceGeneratorData.maxResourceAmount);
 
         if(nearbyResourceAmount == 0){
+            hasResources = false;
             enabled = false;
         }
 
@@ -38,8 +40,6 @@ public class ResourceGenerator : MonoBehaviour{
             timerMax = (resourceGeneratorData.timerMax / 2f) +
             resourceGeneratorData.timerMax * (1 - (float)nearbyResourceAmount / resourceGeneratorData.maxResourceAmount);
         } 
-
-        Debug.Log("Nearby resource amount :" + nearbyResourceAmount + " max timer: " + timerMax);
     }
 
     private void Update(){
@@ -48,5 +48,23 @@ public class ResourceGenerator : MonoBehaviour{
             timer += timerMax;
             ResourceManager.Instance.AddResource(resourceGeneratorData.resourceType, 1);
         }
+    }
+
+    public ResourceGeneratorData GetResourceGeneratorData(){
+        return resourceGeneratorData;
+    }
+
+    public float GetTimerNormalized(){
+        return timer / timerMax;
+    }
+
+    public float GetAmountGeneratedPerSecond(){
+        if(!hasResources){
+            return 0;
+        }
+        
+        else{
+            return 1 / timerMax;
+        } 
     }
 }
