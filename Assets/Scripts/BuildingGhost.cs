@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingGhost : MonoBehaviour{
 
     private GameObject spriteGameObject;
+    private ResourceGeneratorNearby resourceGeneratorNearby;
 
     private void Awake(){
         spriteGameObject = transform.Find("sprite").gameObject;
@@ -14,14 +15,18 @@ public class BuildingGhost : MonoBehaviour{
 
     private void Start(){
         BuildingManager.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;
+
+        resourceGeneratorNearby = transform.Find("pfResourceGeneratorNearby").GetComponent<ResourceGeneratorNearby>();
     }
 
     private void BuildingManager_OnActiveBuildingTypeChanged(object sender, BuildingManager.OnActiveBuildingTypeChangedEventArgs e){
         if(e.activeBuildingType == null){
             Hide();
+            resourceGeneratorNearby.Hide();
         }
         else{
             Show(e.activeBuildingType.sprite);
+            resourceGeneratorNearby.Show(e.activeBuildingType.resourceGeneratorData);
         }
     }
 
