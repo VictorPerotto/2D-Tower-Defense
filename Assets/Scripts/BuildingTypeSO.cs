@@ -11,4 +11,12 @@ public class BuildingTypeSO : ScriptableObject{
     public float minConstructionRadius;
     public ResourceAmount[] constructionResourceCostArray;
 
+    public string GetConstructionResourceCostString(){
+
+        string resourceString = "";
+        foreach (ResourceAmount resourceAmount in constructionResourceCostArray){
+            resourceString += resourceAmount.resourceType.nameString + ": " + resourceAmount.amount;
+        }
+        return resourceString;
+    }
 }
