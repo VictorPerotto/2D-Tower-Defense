@@ -15,7 +15,8 @@ public class BuildingTypeSO : ScriptableObject{
 
         string resourceString = "";
         foreach (ResourceAmount resourceAmount in constructionResourceCostArray){
-            resourceString += resourceAmount.resourceType.nameString + ": " + resourceAmount.amount;
+            resourceString += "<color=#" + resourceAmount.resourceType.colorHex + ">" 
+            + resourceAmount.resourceType.nameShort + resourceAmount.amount + "</color> ";
         }
         return resourceString;
     }
