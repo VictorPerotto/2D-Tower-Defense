@@ -12,6 +12,7 @@ public class TooltipUI : MonoBehaviour{
     [SerializeField] TextMeshProUGUI textMeshPro;
     [SerializeField] RectTransform backgroundRectTransform;
     [SerializeField] RectTransform canvasRectTransform;
+    private TooltipTimer tooltipTimer;
 
     private void Awake(){
         Instance = this;
@@ -31,6 +32,17 @@ public class TooltipUI : MonoBehaviour{
     }
 
     private void Update(){
+        HandleFollowMouse();
+        
+        if(tooltipTimer != null){
+            tooltipTimer.timer -= Time.deltaTime;
+            if(tooltipTimer.timer <= 0){
+                Hide();
+            }
+        }
+    }
+
+    private void HandleFollowMouse(){
         Vector2 anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
         
         if(anchoredPosition.x + backgroundRectTransform.rect.width > canvasRectTransform.rect.width){
@@ -44,12 +56,17 @@ public class TooltipUI : MonoBehaviour{
         rectTransform.anchoredPosition = anchoredPosition;
     }
 
-    public void Show(string tooltipText){
+    public void Show(string tooltipText, TooltipTimer tooltipTimer = null){
+        this.tooltipTimer = tooltipTimer;
         gameObject.SetActive(true);
         SetText(tooltipText);
     }
 
     public void Hide(){
         gameObject.SetActive(false);
+    }
+
+    public class TooltipTimer{
+        public float timer;
     }
 }
