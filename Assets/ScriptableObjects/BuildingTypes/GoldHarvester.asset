@@ -26,3 +26,4 @@ MonoBehaviour:
     amount: 50
   - resourceType: {fileID: 11400000, guid: 01a46017771279647b2a2d94ca3453f4, type: 2}
     amount: 50
+  maxHealthAmount: 100

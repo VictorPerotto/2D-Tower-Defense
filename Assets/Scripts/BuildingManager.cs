@@ -16,6 +16,7 @@ public class BuildingManager : MonoBehaviour
         public BuildingTypeSO activeBuildingType;
     }
 
+    [SerializeField] private Building hqBuilding;
     private BuildingTypeSO activeBuildingType;
     private BuildingTypeListSO buildingTypeList;
 
@@ -96,4 +97,7 @@ public class BuildingManager : MonoBehaviour
         return false;
     }
 
+    public Building GetHQBuilding(){
+        return hqBuilding;
+    }
 }
