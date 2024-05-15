@@ -5,18 +5,15 @@ using UnityEngine;
 
 public class Building : MonoBehaviour{
 
+    private BuildingTypeSO buildingTypeSO;
     private HealthSystem healthSystem;
 
     private void Start(){
-        healthSystem = GetComponent<HealthSystem>();
-        healthSystem.OnDied += HealthSystem_OnDied;
-    }
+        buildingTypeSO = GetComponent<BuildingTypeHolder>().buildingType;
 
-    private void Update(){
-        if(Input.GetKeyDown(KeyCode.T)){
-            healthSystem.Damage(999);
-            Debug.Log(healthSystem.GetCurrentHealthAmount());
-        }
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.SetMaxHealthAmount(buildingTypeSO.maxHealthAmount, true);
+        healthSystem.OnDied += HealthSystem_OnDied;
     }
 
     private void HealthSystem_OnDied(object sender, EventArgs e){

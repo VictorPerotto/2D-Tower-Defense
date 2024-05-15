@@ -30,11 +30,23 @@ public class HealthSystem : MonoBehaviour{
         return currentHealthAmount == 0;
     }
 
+    public bool IsFullHealth(){
+        return currentHealthAmount == maxHealthAmount;
+    }
+
     public int GetCurrentHealthAmount(){
         return currentHealthAmount;
     }
 
     public float GetCurrentHealthAmountNormalized(){
         return (float) currentHealthAmount / maxHealthAmount;
+    }
+
+    public void SetMaxHealthAmount(int maxHealthAmount, bool updateHealthAmount){
+        this.maxHealthAmount = maxHealthAmount;
+
+        if(updateHealthAmount){
+            currentHealthAmount = maxHealthAmount;
+        }
     }
 }
