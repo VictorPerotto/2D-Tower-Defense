@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rigidbody2d;
     private Transform targetTransform;
+    private HealthSystem healthSystem;
     private float lookForTargetsTimer;
     private float lookForTargetsTimerMax = 0.2f;
     
@@ -22,16 +23,31 @@ public class Enemy : MonoBehaviour
     private void Start(){
         rigidbody2d = GetComponent<Rigidbody2D>();
         targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDied += HealthSystem_OnDied;
+
+        lookForTargetsTimer = Random.Range(0f, lookForTargetsTimerMax);
     }
 
-    // Update is called once per frame
     private void Update(){
-        Vector3 moveDirection = (targetTransform.position - transform.position).normalized;
+        HandleMovement();
+        HandleTargeting();
+    }
 
-        float moveSpeed = 6f;
-        rigidbody2d.velocity = moveDirection * moveSpeed;
+    private void HandleMovement(){
+        if(targetTransform != null){
+            Vector3 moveDirection = (targetTransform.position - transform.position).normalized;
 
+            float moveSpeed = 6f;
+            rigidbody2d.velocity = moveDirection * moveSpeed;
+        } else {
+            rigidbody2d.velocity = Vector2.zero;
+        }
+    }
+
+    private void HandleTargeting(){
         lookForTargetsTimer -= Time.deltaTime;
+
         if (lookForTargetsTimer <= 0){
             lookForTargetsTimer = lookForTargetsTimerMax;
             LookForTargets();
@@ -65,5 +81,13 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+
+        if (targetTransform == null){
+           targetTransform =  BuildingManager.Instance.GetHQBuilding().transform;
+        }
+    }
+
+    private void HealthSystem_OnDied(object sender, System.EventArgs e){
+        Destroy(gameObject);
     }
 }

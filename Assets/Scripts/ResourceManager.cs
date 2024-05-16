@@ -12,6 +12,7 @@ public class ResourceManager : MonoBehaviour{
     //criamos um evento, que ativa um trigger quando chamado, e que pode ser ouvido por outra classe 
 
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
+    [SerializeField] private List<ResourceAmount> startingResourceAmountList;
 
     private void Awake(){
         Instance = this;
@@ -21,6 +22,10 @@ public class ResourceManager : MonoBehaviour{
 
         foreach (ResourceTypeSO resourceType in resourceTypeList.list){
             resourceAmountDictionary[resourceType] = 0;
+        }
+
+        foreach (ResourceAmount resourceAmount in startingResourceAmountList){
+            AddResource(resourceAmount.resourceType, resourceAmount.amount);
         }
     }
 
