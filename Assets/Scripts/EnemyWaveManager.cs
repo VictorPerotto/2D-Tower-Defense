@@ -81,4 +81,8 @@ public class EnemyWaveManager : MonoBehaviour{
     public float GetWaveCountdown(){
         return nextWaveSpawnTimer;;
     }
+
+    public Vector3 GetSpawnPosition(){
+        return spawnPosition;
+    }
 }

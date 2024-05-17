@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Tower
   m_EditorClassIdentifier: 
   nameString: Tower
-  prefab: {fileID: 0}
+  prefab: {fileID: 1322533633075302638, guid: ea4ab2eb214cab54da5560fa48b7d714, type: 3}
+  hasResourceGeneratorData: 0
   resourceGeneratorData:
     timerMax: 0
     resourceType: {fileID: 0}
     resourceDetectionRadius: 0
     maxResourceAmount: 0
-  sprite: {fileID: 0}
-  minConstructionRadius: 0
-  constructionResourceCostArray: []
-  maxHealthAmount: 0
+  sprite: {fileID: 21300000, guid: 3a549cd61f4d79e4b996c9978dac641f, type: 3}
+  minConstructionRadius: 7
+  constructionResourceCostArray:
+  - resourceType: {fileID: 11400000, guid: 361980d33001d4a4cb66fba4496d4962, type: 2}
+    amount: 40
+  - resourceType: {fileID: 11400000, guid: 01a46017771279647b2a2d94ca3453f4, type: 2}
+    amount: 30
+  maxHealthAmount: 70
