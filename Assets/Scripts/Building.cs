@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class Building : MonoBehaviour{
 
+    [SerializeField] private Transform demolishButton;
     private BuildingTypeSO buildingTypeSO;
     private HealthSystem healthSystem;
+
+    private void Awake(){
+        HideDemolishButton();
+    }
 
     private void Start(){
         buildingTypeSO = GetComponent<BuildingTypeHolder>().buildingType;
@@ -18,5 +23,25 @@ public class Building : MonoBehaviour{
 
     private void HealthSystem_OnDied(object sender, EventArgs e){
         Destroy(gameObject);
+    }
+
+    private void OnMouseEnter(){
+        ShowDemolishButton();
+    }
+
+    private void OnMouseExit(){
+        HideDemolishButton();
+    }
+
+    private void HideDemolishButton(){
+        if(demolishButton != null){
+            demolishButton.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowDemolishButton(){
+        if(demolishButton != null){
+            demolishButton.gameObject.SetActive(true);
+        }
     }
 }

@@ -50,6 +50,8 @@ public class BuildingConstruction : MonoBehaviour{
 
         boxCollider2D.offset = buildingTypeSO.prefab.GetComponent<BoxCollider2D>().offset;
         boxCollider2D.size = buildingTypeSO.prefab.GetComponent<BoxCollider2D>().size;
+
+        buildingTypeHolder.buildingType = buildingTypeSO;
     }
 
     public float GetTimerNormalized(){
